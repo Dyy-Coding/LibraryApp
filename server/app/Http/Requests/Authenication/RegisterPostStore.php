@@ -22,14 +22,16 @@ class RegisterPostStore extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-        {
-            return [
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:6|confirmed',
-                'image' => 'nullable|url',
-            ];
-        }
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            
+            // Accept either a file or a URL
+            'image' => 'nullable',
+        ];
+    }
 
     /**
      * Custom error messages for validation.

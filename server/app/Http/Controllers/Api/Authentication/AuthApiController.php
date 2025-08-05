@@ -45,6 +45,18 @@ class AuthApiController extends Controller
                 'email_verified_at' => now(), // Optional: Automatically verify
             ]);
 
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('public/images', $filename);
+                $imagePath = '/storage/images/' . $filename;
+            } elseif (filter_var($request->input('image'), FILTER_VALIDATE_URL)) {
+                $imagePath = $request->input('image'); // just save URL directly
+            } else {
+                $imagePath = null;
+            }
+
+
             $token = $user->createToken('api-token')->plainTextToken;
 
             return $this->successResponse('User registered successfully.', [

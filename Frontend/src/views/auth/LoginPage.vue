@@ -49,7 +49,7 @@ const handleLogin = async () => {
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
-    router.push('/')
+    router.push('/about')
   } catch (err) {
     console.error('Login error:', err)
     error.value =

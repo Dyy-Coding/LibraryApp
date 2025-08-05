@@ -23,6 +23,12 @@ export const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/book',
+    name: 'Home',
+    component: Home,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }
